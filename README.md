@@ -101,4 +101,19 @@ The frontend is configured to use the default development server settings. You c
 - The application uses Java 22, ensure your JDK version is compatible
 
 
+For Frontend:
+
+Copy the dependencies section into your package.json
+Run npm install
+
+
+For Backend:
+
+Copy the dependencies into your pom.xml
+Run mvn clean install
+
+
+
+
+
 
