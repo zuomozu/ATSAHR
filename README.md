@@ -100,17 +100,25 @@ The frontend is configured to use the default development server settings. You c
 - Make sure MongoDB is running before starting the backend server
 - The application uses Java 22, ensure your JDK version is compatible
 
+## TO run
 
-For Frontend:
+### For Frontend:
 
-Copy the dependencies section into your package.json
-Run npm install
+Run 
+```
+npm install
+npm start
+```
 
 
-For Backend:
 
-Copy the dependencies into your pom.xml
-Run mvn clean install
+### For Backend:
+
+Run
+```
+mvn clean install
+mvn spring-boot:run
+
 
 
 
