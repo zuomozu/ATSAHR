@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.status-badge {
+  display: inline-block;
+  padding: 5px 5px; /* Adjust padding for size */
+  border-radius: 8px; /* Rounded corners for radius square */
+  color: white; /* Text color */
+  font-weight: bold; /* Text styling */
+  min-width: 60px; /* Minimum width for consistent size */
+  text-align: center; /* Center the text */
+}
+
+.bg-green-500 {
+  background-color: #4CAF50; /* Green color for Active */
+}
+
+.bg-yellow-500 {
+  background-color: #FFC107; /* Yellow color for On Leave */
+}
+
+.bg-red-500 {
+  background-color: #F44336; /* Red color for Inactive */
+}
