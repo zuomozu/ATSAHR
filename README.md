@@ -25,6 +25,9 @@ hr-tool/
     └── package-lock.json
 ```
 
+
+
+
 ## Backend Setup
 
 1. Clone the repository
@@ -64,6 +67,11 @@ npm start
 
 The frontend application will start on `http://localhost:3000`
 
+## Database Setup
+
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=HRTOOL
+
 ## Technology Stack
 
 ### Backend
@@ -100,24 +108,6 @@ The frontend is configured to use the default development server settings. You c
 - Make sure MongoDB is running before starting the backend server
 - The application uses Java 22, ensure your JDK version is compatible
 
-## TO run
-
-### For Frontend:
-
-Run 
-```
-npm install
-npm start
-```
-
-
-
-### For Backend:
-
-Run
-```
-mvn clean install
-mvn spring-boot:run
 
 
 
