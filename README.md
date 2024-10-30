@@ -40,7 +40,32 @@ cd hr-tool/backend
 - Make sure MongoDB is running on port 27017
 - The application will automatically create a database named "HRTOOL"
 
-3. Build and run the Spring Boot application
+
+
+3. Install Maven
+
+If Maven is not already installed on your system, follow these steps:
+
+1. Download Maven from the [official Apache Maven website](https://maven.apache.org/download.cgi).
+2. Extract the downloaded file to a directory, for example:
+C:\Program Files\Apache\maven
+
+Set Up the Maven Path in Environment Variables
+
+1. Open the Start menu and search for **Environment Variables**.
+2. Click on **Edit the system environment variables**.
+3. In the **System Properties** window, click **Environment Variables**.
+4. Under **System variables**, find the `Path` variable and click **Edit**.
+5. Add the path to Maven’s `bin` directory, for example:
+C:\Program Files\Apache\maven\bin
+
+
+6. Click **OK** to save your changes.
+
+Maven is now installed and ready to use.
+
+
+4. Build and run the Spring Boot application
 ```bash
 mvn clean install
 mvn spring-boot:run
