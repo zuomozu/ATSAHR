@@ -64,6 +64,11 @@ C:\Program Files\Apache\maven\bin
 
 Maven is now installed and ready to use.
 
+4. Install MONGODB:
+
+   Community Server : https://www.mongodb.com/try/download/community
+   MONGO Compass GUI : https://www.mongodb.com/try/download/compass
+
 
 4. Build and run the Spring Boot application
 ```bash
