@@ -58,7 +58,11 @@ const JobPostingList = () => {
 
   const loadJobPostings = async () => {
     try {
-      const result = await axios.get('http://localhost:8080/api/jobpostings');
+      const result = await axios.get('http://localhost:8080/api/jobpostings',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setJobPostings(result.data);
     } catch (error) {
       console.error('Error loading job postings:', error);
@@ -67,7 +71,11 @@ const JobPostingList = () => {
 
   const deleteJobPosting = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/jobpostings/${id}`);
+      await axios.delete(`http://localhost:8080/api/jobpostings/${id}`,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       loadJobPostings();
     } catch (error) {
       console.error('Error deleting job posting:', error);
@@ -111,7 +119,11 @@ const JobPostingList = () => {
     }
 
     try {
-      await axios.post("http://localhost:8080/api/jobpostings/addJob/", form);
+      await axios.post("http://localhost:8080/api/jobpostings/addJob/", form, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setIsModalOpen(false);
       loadJobPostings();
     } catch (error) {

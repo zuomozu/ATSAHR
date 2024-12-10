@@ -56,7 +56,11 @@ const EmployeeList = () => {
 
   const loadEmployees = async () => {
     try {
-      const result = await axios.get('http://localhost:8080/api/employees');
+      const result = await axios.get('http://localhost:8080/api/employees',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setEmployees(result.data);
       console.log(result.data);
     } catch (error) {

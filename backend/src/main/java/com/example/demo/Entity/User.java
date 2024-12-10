@@ -18,8 +18,6 @@ public class User {
     private String username;
     @NonNull
     private String password;
-    @DBRef
-    private Employee employee;
     private String role;
     private Date lastLogin;
 

@@ -24,6 +24,10 @@ const EditEmployee = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+  if (!token) {
+    navigate('/login'); // Redirect to login if no token
+  }
     const fetchEmployee = async () => {
       try {
         setLoading(true);

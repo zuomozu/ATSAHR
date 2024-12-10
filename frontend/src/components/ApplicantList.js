@@ -66,7 +66,11 @@ const ApplicantList = () => {
   }, []);
   const loadJobPostings = async () => {
     try {
-      const result = await axios.get('http://localhost:8080/api/jobpostings');
+      const result = await axios.get('http://localhost:8080/api/jobpostings',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setJobPostings(result.data);
     } catch (error) {
       console.error('Error loading job postings:', error);
@@ -74,7 +78,11 @@ const ApplicantList = () => {
   };
   const loadApplicants = async () => {
     try {
-      const result = await axios.get('http://localhost:8080/api/applicants');
+      const result = await axios.get('http://localhost:8080/api/applicants',{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
       setApplicants(result.data);
     } catch (error) {
       console.error('Error loading applicants:', error);
@@ -83,7 +91,11 @@ const ApplicantList = () => {
 
   const deleteApplicant = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/applicants/${id}`);
+      await axios.delete(`http://localhost:8080/api/applicants/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('authToken')}`
+    }
+  });
       loadApplicants();
     } catch (error) {
       console.error('Error deleting applicant:', error);
@@ -252,23 +264,29 @@ const ApplicantList = () => {
           <TableBody>
             {filteredApplicants.map((applicant) => (
               <TableRow key={applicant.id} hover>
-                <TableCell>
+                {columns.name && <TableCell>
                   {`${applicant.personalDetails.firstName} ${applicant.personalDetails.lastName}`}
-                </TableCell>
-                <TableCell>{applicant.applicationDetails.appliedPosition}</TableCell>
-                <TableCell>{applicant.personalDetails.contactInformation.primary_emails}</TableCell>
-                <TableCell>{applicant.personalDetails.contactInformation.phone}</TableCell>
+                </TableCell>}
+                {columns.position && 
+                <TableCell>{applicant.applicationDetails.appliedPosition}</TableCell>}
+                {columns.email &&
+                <TableCell>{applicant.personalDetails.contactInformation.primary_emails}</TableCell>}
+                {columns.phone &&
+                <TableCell>{applicant.personalDetails.contactInformation.phone}</TableCell>}
+                {columns.status && 
                 <TableCell>
                   <span className={`status-badge ${applicant.applicationDetails.status === 'Accepted' ? 'bg-green-500' :
                       applicant.applicationDetails.status === 'Pending' ? 'bg-yellow-500' : 'bg-red-500'
                     }`}>
                     {applicant.applicationDetails.status}
                   </span>
-                </TableCell>
-                <TableCell>{new Date(applicant.applicationDetails.applicationDate).toLocaleDateString()}</TableCell>
+                </TableCell>}
+                {columns.applicationDate &&
+                <TableCell>{new Date(applicant.applicationDetails.applicationDate).toLocaleDateString()}</TableCell>}
+                {columns.location &&
                 <TableCell>
                   {`${applicant.personalDetails.contactInformation.address.city}, ${applicant.personalDetails.contactInformation.address.state}`}
-                </TableCell>
+                </TableCell>}
                 <TableCell>
                   <IconButton color="primary" onClick={() => navigate(`/applicant/${applicant.id}`)}>
                     <Edit />

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Box, CssBaseline, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideBar from './components/SideBar'; // Fixed capitalization
 import Header from './components/Header';
 import EmployeeList from './components/EmployeeList';
+import Login from './components/Login';
+import ProtectedRoute from './ProtectedRoute';
 import ApplicantList from './components/ApplicantList';
 import JobPostingList from './components/JobPostingList';
 import EditEmployee from './components/EditEmployee';
 import EditJob from './components/EditJob';
 import UserProfile from './components/UserProfile';
+import Calender from './components/Calender';
 
+console.log("LOGIN",Login);
 
 const App = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -37,10 +41,10 @@ const App = () => {
                 <Toolbar />
 
                 <Box sx={{ display: 'flex', flexGrow: 1, height: '100%' }}>
-                    <SideBar
-                        darkMode={darkMode}
-                        toggleDarkMode={toggleDarkMode}
-                    />
+                    {/* Protect the SideBar */}
+                    <ProtectedRoute>
+                        <SideBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+                    </ProtectedRoute>
 
                     <Box
                         component="main"
@@ -52,17 +56,66 @@ const App = () => {
                         }}
                     >
                         <Routes>
-                            <Route path="/" element={
-                                <>
-                                    <Header />
-                                    <EmployeeList />
-                                </>
-                            } />
-                            <Route path="/userprofile/:id" element={<UserProfile />} />
-                            <Route path="/edituserprofile/:id" element={<EditEmployee />} />
-                            <Route path="/job" element={<JobPostingList />} />
-                            <Route path="/editJob/:id" element={<EditJob />} />
-                            <Route path="/applicants" element={<ApplicantList />} />
+                            <Route path="/Login" element={<Login />} />
+                            <Route
+                                path="/"
+                                element={
+                                    <ProtectedRoute>
+                                        <Header />
+                                        <EmployeeList />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/userprofile/:id"
+                                element={
+                                    <ProtectedRoute>
+                                        <UserProfile />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/edituserprofile/:id"
+                                element={
+                                    <ProtectedRoute>
+                                        <EditEmployee />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/job"
+                                element={
+                                    <ProtectedRoute>
+                                        <JobPostingList />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/editJob/:id"
+                                element={
+                                    <ProtectedRoute>
+                                        <EditJob />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/applicants"
+                                element={
+                                    <ProtectedRoute>
+                                        <ApplicantList />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/Calender"
+                                element={
+                                    <ProtectedRoute>
+                                        <Calender />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            {/* Redirect any unknown routes to login */}
+                            <Route path="*" element={<Navigate to="/Login" />} />
                         </Routes>
                     </Box>
                 </Box>

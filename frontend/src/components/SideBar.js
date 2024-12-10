@@ -109,11 +109,15 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
                     {isSidebarOpen && <ListItemText primary="Leave" />}
                 </ListItem>
 
-                <ListItem button>
+                <ListItem button onClick={(e) => {
+                    navigate(`/Calender`)
+                    e.stopPropagation(); // Prevent row click from triggering
+                    console.log('redirect to applicants');
+                }}>
                     <ListItemIcon>
                         <BusinessCenter />
                     </ListItemIcon>
-                    {isSidebarOpen && <ListItemText primary="Project" />}
+                    {isSidebarOpen && <ListItemText primary="Calender" />}
                 </ListItem>
 
                 <ListItem button>
