@@ -27,7 +27,11 @@ const EditJob = () => {
     const fetchJob = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:8080/api/jobpostings/${jobId}`);
+        const response = await fetch(`http://localhost:8080/api/jobpostings/${jobId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('authToken')}`
+    }
+  });
         if (!response.ok) {
           throw new Error('Failed to fetch job data');
         }
